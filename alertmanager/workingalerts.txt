@@ -1,0 +1,64 @@
+groups:
+- name: example
+  rules:
+
+  - alert: HighHostOutOfMemor11
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100 > 5
+    # for: 1m
+    labels:
+      severity: high
+      team: coffee
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: HighCPU11
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100 > 5
+    # for: 1m
+    labels:
+      severity: medium
+      team: tea
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: HighCPU21
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100 > 5
+    # for: 1m
+    labels:
+      severity: warning
+      team: tea
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: Memoryabove90%91
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100 > 5
+      # for: 1m
+    labels:
+        severity: high
+        team: tea
+    annotations:
+        summary: Host out of memory (instance {{ $labels.instance }})
+        description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+
+  - alert: MemoryAPIerror11
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100 > 5
+    # for: 1m
+    labels:
+      severity: medium
+      team: coffee
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: alert5c1
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100 > 5
+    # for: 1m
+    labels:
+      severity: low
+      team: tea
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

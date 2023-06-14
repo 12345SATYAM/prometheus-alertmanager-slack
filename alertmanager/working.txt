@@ -1,0 +1,76 @@
+route:
+  receiver: 'tea'
+  group_wait: 30s
+  group_interval: 1m
+  repeat_interval: 9h
+  group_by: [alertname]
+  routes:
+    
+
+  # - match:
+  #     team: "coffee"
+  #     severity: "high"
+  #   continue: true
+  #   receiver: 'coffee'  
+
+  - match:
+      team: "coffee"
+      severity: "high"
+    receiver: 'tea'
+    continue: true
+  - match:
+      team: "coffee"
+      severity: "high"
+    receiver: 'ttea'
+    continue: true
+  - match:
+      team: "coffee"
+      severity: "high"
+    receiver: 'tea2'
+  # - match:
+  #     team: "tea"
+  #     severity: "high"
+  #   receiver: 'ttea'
+ 
+  # - match:
+  #     team: "tea"
+  #     severity: "high"
+  #   receiver: 'tea'
+
+receivers:
+
+- name: 'default-receiver'
+  slack_configs:
+  - api_url: "https://hooks.slack.com/services/${SLACK_ACCESS_TOKEN}"
+    channel: '#default-alerts'
+    send_resolved: true    
+
+- name: 'coffee'
+  slack_configs:
+  - api_url: https://hooks.slack.com/services/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
+    channel: '#default-alerts'
+    send_resolved: true
+
+- name: 'ttea'
+  slack_configs:
+  - api_url: https://hooks.slack.com/services/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
+    channel: '#ttea'
+    http_config:
+      tls_config:
+        insecure_skip_verify: true
+    send_resolved: true
+
+
+# - name: 'tea2'
+#   webhook_configs:
+#   - url: "https://paytmcaller-api.paytm.com/api/alert/p-am/75cd68a29b61f75d1662433215421578"
+#     send_resolved: true
+
+- name: 'tea'
+  slack_configs:
+  - api_url: https://hooks.slack.com/services/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
+    channel: '#paytmcaller'
+    http_config:
+      tls_config:
+        insecure_skip_verify: true
+    send_resolved: true
